@@ -1,3 +1,13 @@
+<pre id="respo"></pre>
+
+<script type="module">
+import { RESPO } from "./respo.js";
+import "./continium.js";
+
+document.getElementById("respo").textContent =
+    document.body.dataset.respo;
+
+
 export const RESPO = {
 
     // Basis-Modi
@@ -35,3 +45,4 @@ export const RESPO = {
         return this;
     }
 };
+</script>
