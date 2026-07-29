@@ -1,8 +1,84 @@
-<pre id="respo"></pre>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>RESPO Dashboard · LOL Geo‑Formation</title>
+
+<style>
+body {
+  background:#000;
+  color:#0ff;
+  font-family:Consolas, monospace;
+  padding:20px;
+}
+
+h1 {
+  color:#6cf;
+  text-shadow:0 0 10px #6cf;
+}
+
+#dashboard {
+  border:1px solid #0ff;
+  padding:20px;
+  background:#111;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+#signal {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  margin:20px auto;
+  transition:0.4s;
+  box-shadow:0 0 20px #000;
+}
+
+#geo {
+  margin-top:20px;
+  font-size:22px;
+  text-align:center;
+  letter-spacing:4px;
+  transition:0.4s;
+}
+</style>
+</head>
+
+<body>
+
+<h1>RESPO Dashboard · LOL Geo‑Formation</h1>
+
+<div id="dashboard">
+  <pre id="respo"></pre>
+</div>
+
+<div id="signal"></div>
+<div id="geo"></div>
 
 <script type="module">
-import "./continium.js";
+import "./continium.js"; // setzt dataset.respo
 
+// Dashboard anzeigen
+const respo = JSON.parse(document.body.dataset.respo);
 document.getElementById("respo").textContent =
-    document.body.dataset.respo;
+    JSON.stringify(respo, null, 2);
+
+// Signal-Monitor
+const signal = document.getElementById("signal");
+const geo = document.getElementById("geo");
+
+if(respo.signal === "bright"){
+    signal.style.background = "#ff0";
+    signal.style.boxShadow = "0 0 40px #ff0";
+    geo.textContent = "LOL(rdy)+";
+    geo.style.color = "#ff0";
+} else {
+    signal.style.background = "#222";
+    signal.style.boxShadow = "0 0 10px #333";
+    geo.textContent = "WAIT";
+    geo.style.color = "#555";
+}
 </script>
+
+</body>
+</html>
