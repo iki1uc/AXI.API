@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>ANKER-A01-S01-D4-erabel · STABIL Dashboard</title>
+<style>
+body{background:#050505;color:#00FF88;font-family:Consolas,monospace;padding:20px}
+h1{color:#00FF88;text-shadow:0 0 10px #00FF88;font-size:18px}
+#board{border:1px solid #00FF88;padding:20px;background:#111;border-radius:10px;margin-bottom:20px}
+#signal{width:120px;height:120px;border-radius:50%;margin:20px auto;transition:0.4s}
+#geo{margin-top:20px;font-size:22px;text-align:center;letter-spacing:4px}
+pre{color:#88ffcc}
+</style>
+</head>
+<body>
+<h1>ANKER · A01 · S01 · D4 · erabel · STABIL · READY 100%</h1>
+<div id="board">
+<pre>NAME: ANKER
+ID: A01
+Station: S01
+Dimension: D4
+Modus: erabel (neutral, operation möglich)
+Rolle: Stabilisationsachse - hält IQ, QI, EVO, UPD, UPG, BIOS, CALC im Verhältnis
+Bindungen: AXI | 6d | 360 | 100 | 213 REAL | API
+STATE: STABIL</pre>
+<pre id="respo"></pre>
+</div>
+<div id="signal"></div>
+<div id="geo"></div>
+
+<script type="module">
+import "./continium.js";
+const respo = JSON.parse(document.body.dataset.respo || '{"signal":"wait","state":"STABIL","ready":100}');
+document.getElementById("respo").textContent = JSON.stringify(respo,null,2);
+const signal = document.getElementById("signal");
+const geo = document.getElementById("geo");
+if(respo.signal === "bright"){
+  signal.style.background="#ff0"; signal.style.boxShadow="0 0 40px #ff0";
+  geo.textContent="STABIL(rdy)+ · 393 weiss warum"; geo.style.color="#ff0";
+} else {
+  signal.style.background="#222"; signal.style.boxShadow="0 0 10px #333";
+  geo.textContent="STABIL WAIT · Kopf frei"; geo.style.color="#555";
+}
+</script>
+</body>
+</html>
